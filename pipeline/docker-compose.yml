@@ -72,6 +72,7 @@ services:
       - kestra_data:/app/storage
       - /var/run/docker.sock:/var/run/docker.sock
       - kestra_tmp:/tmp/kestra-wd
+    env_file: .env_encoded
     environment:
       KESTRA_CONFIGURATION: |
         datasources:
@@ -104,7 +105,7 @@ services:
               model-name: gemini-2.5-flash
               api-key: ${GEMINI_API_KEY}
               
-          env_file: .env_encoded
+            
 
     ports:       
       - "8080:8080"
