@@ -93,14 +93,25 @@ services:
               basePath: "/app/storage"
           queue:
             type: postgres
+
           tasks:
             tmpDir:
               path: /tmp/kestra-wd/tmp
           url: http://localhost:8080/
-    ports:
+          ai:
+            type: gemini
+            gemini:
+              model-name: gemini-2.5-flash
+              api-key: ${GEMINI_API_KEY}
+              
+          env_file: .env_encoded
+
+    ports:       
       - "8080:8080"
       - "8081:8081"
     depends_on:
       kestra_postgres:
         condition: service_started
+
+
     
