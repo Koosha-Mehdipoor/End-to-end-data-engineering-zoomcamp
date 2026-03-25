@@ -1,7 +1,7 @@
 version: 2
 
 sources:
-  - name: taxi_trips
+  - name: raw
     description: "Raw source tables stored in BigQuery."
     database: de-zoomcamp-489309
     schema: zoomcamp

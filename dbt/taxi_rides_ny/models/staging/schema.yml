@@ -1,0 +1,68 @@
+version: 2
+
+models:
+  - name: stg_green_tripdata
+    description: "Staged green taxi trip data with renamed columns and cleaned types."
+    columns:
+      - name: vendor_id
+        description: "Identifier for the taxi vendor."
+        tests:
+          - not_null
+
+      - name: rate_code_id
+        description: "Rate code in effect for the trip."
+
+      - name: pickup_location_id
+        description: "TLC location ID where the trip started."
+
+      - name: dropoff_location_id
+        description: "TLC location ID where the trip ended."
+
+      - name: pickup_datetime
+        description: "Timestamp when the passenger was picked up."
+        tests:
+          - not_null
+
+      - name: dropoff_datetime
+        description: "Timestamp when the passenger was dropped off."
+        tests:
+          - not_null
+
+      - name: store_and_fwd_flag
+        description: "Indicates whether the trip record was held in vehicle memory before being sent."
+
+      - name: passenger_count
+        description: "Number of passengers in the vehicle."
+
+      - name: trip_distance
+        description: "Trip distance reported in miles."
+
+      - name: trip_type
+        description: "Type of trip, such as street-hail or dispatch."
+
+      - name: fare_amount
+        description: "Base fare amount charged for the trip."
+
+      - name: extra
+        description: "Extra charges and surcharges."
+
+      - name: mta_tax
+        description: "MTA tax charged for the trip."
+
+      - name: tip_amount
+        description: "Tip amount paid by the passenger."
+
+      - name: tolls_amount
+        description: "Total tolls paid during the trip."
+
+      - name: ehail_fee
+        description: "Electronic hail fee charged for the trip."
+
+      - name: improvement_surcharge
+        description: "Improvement surcharge charged for the trip."
+
+      - name: total_amount
+        description: "Total amount charged to the passenger."
+
+      - name: payment_type
+        description: "Code describing how the passenger paid."
