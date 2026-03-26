@@ -1,6 +1,7 @@
 -- Union green and yellow taxi data into a single dataset
 -- Demonstrates how to combine data from multiple sources with slightly different schemas
-
+-- I would materialize this as a view since it's a simple union and we want to avoid unnecessary storage costs, but you could also materialize it as a table if you prefer
+{{ config(materialized='view') }}
 with green_trips as (
     select
         vendor_id,
