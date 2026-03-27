@@ -1,0 +1,34 @@
+version: 2
+
+models:
+  - name: dim_vendors
+    description: "Dimension table of taxi vendors derived from observed trip records."
+    columns:
+      - name: vendor_id
+        description: "Identifier for the taxi vendor."
+        data_tests:
+          - not_null
+          - unique
+      - name: vendor_name
+        description: "Human-readable name for the taxi vendor."
+
+  - name: dim_zones
+    description: "Dimension table for TLC taxi zones."
+    columns:
+      - name: location_id
+        description: "Unique TLC location identifier."
+        data_tests:
+          - not_null
+          - unique
+      - name: borough
+        description: "New York City borough for the zone."
+      - name: zone
+        description: "Human-readable taxi zone name."
+      - name: service_zone
+        description: "Service zone classification from the TLC lookup."
+
+  - name: fct_trips
+    description: "Placeholder fact model for trips. Update this schema entry once the model is implemented."
+    columns:
+      - name: placeholder
+        description: "Temporary placeholder column while the model is under development."
