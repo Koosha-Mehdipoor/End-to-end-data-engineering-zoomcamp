@@ -33,11 +33,16 @@ models:
   taxi_rides_ny:
     staging:
       +schema: staging
+      +tags: ["staging"]
       +materialized: view
       +static_analysis: off
     intermediate:
       +schema: intermediate
+      +tags: ["intermediate"]
       +materialized: table
     marts:
       +schema: marts
-      +materialized: table 
+      +tags: ["marts"]
+      +materialized: table
+      reporting:
+        +tags: ["reporting"]
