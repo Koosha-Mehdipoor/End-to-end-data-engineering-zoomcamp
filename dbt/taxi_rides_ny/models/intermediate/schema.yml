@@ -1,0 +1,111 @@
+version: 2
+
+models:
+  - name: int_trips_unioned
+    description: "Unioned green and yellow taxi trips with a consistent shared schema."
+    columns:
+      - name: vendor_id
+        description: "Identifier for the taxi vendor."
+      - name: rate_code_id
+        description: "Rate code in effect for the trip."
+      - name: pickup_location_id
+        description: "TLC location ID where the trip started."
+      - name: dropoff_location_id
+        description: "TLC location ID where the trip ended."
+      - name: pickup_datetime
+        description: "Timestamp when the trip started."
+        data_tests:
+          - not_null
+      - name: dropoff_datetime
+        description: "Timestamp when the trip ended."
+      - name: store_and_fwd_flag
+        description: "Flag indicating whether the trip was stored before transmission."
+      - name: passenger_count
+        description: "Number of passengers in the vehicle."
+      - name: trip_distance
+        description: "Trip distance reported in miles."
+      - name: trip_type
+        description: "Trip type code normalized across services."
+      - name: fare_amount
+        description: "Base fare amount charged for the trip."
+      - name: extra
+        description: "Extra charges and surcharges."
+      - name: mta_tax
+        description: "MTA tax charged for the trip."
+      - name: tip_amount
+        description: "Tip amount paid by the passenger."
+      - name: tolls_amount
+        description: "Total tolls paid during the trip."
+      - name: ehail_fee
+        description: "Electronic hail fee, when applicable."
+      - name: improvement_surcharge
+        description: "Improvement surcharge charged for the trip."
+      - name: total_amount
+        description: "Total amount charged to the passenger."
+      - name: payment_type
+        description: "Payment type code."
+      - name: service_type
+        description: "Taxi service type for the trip record."
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['Green', 'Yellow']
+
+  - name: int_trips
+    description: "Deduplicated intermediate trips table with a surrogate trip key and enriched payment type description."
+    columns:
+      - name: trip_id
+        description: "Surrogate key generated from vendor, pickup timestamp, pickup zone, and service type."
+        data_tests:
+          - not_null
+          - unique
+      - name: vendor_id
+        description: "Identifier for the taxi provider."
+      - name: rate_code_id
+        description: "Rate code in effect for the trip."
+      - name: pickup_location_id
+        description: "TLC location ID where the trip started."
+      - name: dropoff_location_id
+        description: "TLC location ID where the trip ended."
+      - name: pickup_datetime
+        description: "Timestamp when the trip started."
+        data_tests:
+          - not_null
+      - name: dropoff_datetime
+        description: "Timestamp when the trip ended."
+      - name: store_and_fwd_flag
+        description: "Flag indicating whether the trip was stored before transmission."
+      - name: passenger_count
+        description: "Number of passengers in the vehicle."
+      - name: trip_distance
+        description: "Trip distance reported in miles."
+      - name: trip_type
+        description: "Trip type code normalized across services."
+      - name: fare_amount
+        description: "Base fare amount charged for the trip."
+      - name: extra
+        description: "Extra charges and surcharges."
+      - name: mta_tax
+        description: "MTA tax charged for the trip."
+      - name: tip_amount
+        description: "Tip amount paid by the passenger."
+      - name: tolls_amount
+        description: "Total tolls paid during the trip."
+      - name: ehail_fee
+        description: "Electronic hail fee, when applicable."
+      - name: improvement_surcharge
+        description: "Improvement surcharge charged for the trip."
+      - name: total_amount
+        description: "Total amount charged to the passenger."
+      - name: payment_type
+        description: "Payment type code with nulls defaulted to 0."
+      - name: payment_type_description
+        description: "Human-readable label for the payment type."
+      - name: service_type
+        description: "Taxi service type for the trip record."
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['Green', 'Yellow']
