@@ -44,5 +44,6 @@ models:
       +schema: marts
       +tags: ["marts"]
       +materialized: table
+      +static_analysis: off
       reporting:
         +tags: ["reporting"]
