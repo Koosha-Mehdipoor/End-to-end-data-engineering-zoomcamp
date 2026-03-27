@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: fct_monthly_zone_revenue
+    description: "Placeholder reporting model for monthly zone revenue. Update this schema entry once the model is implemented."
+    columns:
+      - name: draft
+        description: "Temporary placeholder column while the reporting model is under development."
